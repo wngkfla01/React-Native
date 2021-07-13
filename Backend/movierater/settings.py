@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e!0b7i+-+1$kpi27nzr^ior44ad&b_slg51jk7k!62e#a_%g0k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
     'api',
 ]
 
@@ -76,8 +78,20 @@ WSGI_APPLICATION = 'movierater.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'movierater',
+        'USER': 'admin',
+        'PASSWORD': '1234',
+        'HOST': '192.168.0.2',
+        'PORT': '3306'
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': {
+        'rest_framework.permmission.IsAuthenticated',
     }
 }
 
