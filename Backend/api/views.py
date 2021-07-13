@@ -14,6 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
@@ -34,20 +35,21 @@ class MovieViewSet(viewsets.ModelViewSet):
                 rating.stars = stars
                 rating.save()
                 serializer = RatingSerializer(rating, many=False)
-                response = {'message': 'Rating updated', 'result': serializer.data}
+                response = {'message': 'Rating updated',
+                            'result': serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
 
             except:
-                rating = Rating.objects.create(user=user, movie=movie, stars=stars)
+                rating = Rating.objects.create(
+                    user=user, movie=movie, stars=stars)
                 serializer = RatingSerializer(rating, many=False)
-                response = {'message': 'Rating create', 'result': serializer.data}
+                response = {'message': 'Rating create',
+                            'result': serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
 
         else:
             response = {'message': 'You need to provide stars'}
             return Response(response, status=status.HTTP_200_OK)
-
-    
 
 
 class RatingViewSet(viewsets.ModelViewSet):
