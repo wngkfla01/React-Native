@@ -7,8 +7,8 @@ import {
   Image,
   TouchableOpacity,
   Button,
-  AsyncStorage,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function MovieList(props) {
   const [movies, setMovies] = useState([]);
@@ -29,7 +29,7 @@ export default function MovieList(props) {
 
   const getMovies = () => {
     console.log(token);
-    fetch("http://192.168.0.2:8000/api/movies/", {
+    fetch(`http://192.168.0.2:8000/api/movies/`, {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -40,7 +40,7 @@ export default function MovieList(props) {
       .catch((error) => console.log(error));
   };
 
-  const movieClicked = (movie) => {
+  const movieclicked = (movie) => {
     props.navigation.navigate("Detail", {
       movie: movie,
       title: movie.title,
@@ -55,10 +55,11 @@ export default function MovieList(props) {
         style={{ width: "100%", height: 194.5, paddingTop: 30 }}
         resizeMode="contain"
       />
+
       <FlatList
         data={movies}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => movieClicked(item)}>
+          <TouchableOpacity onPress={() => movieclicked(item)}>
             <View style={styles.item}>
               <Text style={styles.itemText}>{item.title}</Text>
             </View>
@@ -71,7 +72,7 @@ export default function MovieList(props) {
 }
 
 MovieList.navigationOptions = (screenProps) => ({
-  title: "List of Movies",
+  title: "List of movies",
   headerStyle: {
     backgroundColor: "orange",
   },

@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  Image,
-  Button,
-  Alert,
-} from "react-native";
+import { StyleSheet, Text, View, Button, Alert } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faAlignLeft, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 export default function Detail(props) {
   const movie = props.navigation.getParam("movie", null);
   const token = props.navigation.getParam("token", "");
-  const [highlight, setHighlight] = useState(0);
+  const [highlight, setHeighlight] = useState(0);
 
   const rateClicked = () => {
     if (highlight > 0 && highlight < 6) {
@@ -28,7 +20,7 @@ export default function Detail(props) {
       })
         .then((res) => res.json())
         .then((res) => {
-          setHighlight(0);
+          setHeighlight(0);
           Alert.alert("Rating", res.message);
         })
         .catch((error) => Alert.alert("Error", error));
@@ -63,38 +55,38 @@ export default function Detail(props) {
       <Text style={styles.description}>{movie.description}</Text>
 
       <View style={{ borderBottomColor: "white", borderBottomWidth: 2 }} />
-      <Text style={styles.description}>Rate it!!!</Text>
+      <Text style={styles.description}>Rate it !!!</Text>
 
       <View style={styles.starContainer}>
         <FontAwesomeIcon
           style={highlight > 0 ? styles.purple : styles.grey}
           icon={faStar}
           size={48}
-          onPress={() => setHighlight(1)}
+          onPress={() => setHeighlight(1)}
         />
         <FontAwesomeIcon
           style={highlight > 1 ? styles.purple : styles.grey}
           icon={faStar}
           size={48}
-          onPress={() => setHighlight(2)}
+          onPress={() => setHeighlight(2)}
         />
         <FontAwesomeIcon
           style={highlight > 2 ? styles.purple : styles.grey}
           icon={faStar}
           size={48}
-          onPress={() => setHighlight(3)}
+          onPress={() => setHeighlight(3)}
         />
         <FontAwesomeIcon
           style={highlight > 3 ? styles.purple : styles.grey}
           icon={faStar}
           size={48}
-          onPress={() => setHighlight(4)}
+          onPress={() => setHeighlight(4)}
         />
         <FontAwesomeIcon
           style={highlight > 4 ? styles.purple : styles.grey}
           icon={faStar}
           size={48}
-          onPress={() => setHighlight(5)}
+          onPress={() => setHeighlight(5)}
         />
       </View>
       <Button title="Rate" onPress={() => rateClicked()} />
@@ -115,7 +107,7 @@ Detail.navigationOptions = (screenProps) => ({
   headerRight: (
     <Button
       title="Edit"
-      color="orange"
+      color="white"
       onPress={() =>
         screenProps.navigation.navigate("Edit", {
           movie: screenProps.navigation.getParam("movie"),

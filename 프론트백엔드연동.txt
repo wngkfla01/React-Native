@@ -1,0 +1,5 @@
+* 백엔드에서 runserver할 때 프론트엔드와 ip주소 맞춰줘야함!
+ex) python manage.py runserver 192.168.0.2:8000
+
+* settings.py -> ALLOWED_HOSTS = ['*']로 바꿔주기
+

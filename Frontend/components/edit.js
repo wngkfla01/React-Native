@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 export default function Edit(props) {
   const movie = props.navigation.getParam("movie", null);
@@ -11,7 +11,7 @@ export default function Edit(props) {
       fetch(`http://192.168.0.2:8000/api/movies/${movie.id}/`, {
         method: "PUT",
         headers: {
-          Authorization: `Token ${token}`,
+          Authorization: `Token ${token}}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ title: title, description: description }),
@@ -39,19 +39,6 @@ export default function Edit(props) {
         })
         .catch((error) => console.log(error));
     }
-    fetch(`http://192.168.0.2:8000/api/movies/${movie.id}/`, {
-      method: "PUT",
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ title: title, description: description }),
-    })
-      .then((res) => res.json())
-      .then((movie) => {
-        props.navigation.navigate("MovieList");
-      })
-      .catch((error) => console.log(error));
   };
 
   return (
@@ -104,7 +91,7 @@ const removeClicked = (props) => {
       "Content-Type": "application/json",
     },
   })
-    .then((movie) => {
+    .then((res) => {
       props.navigation.navigate("MovieList");
     })
     .catch((error) => console.log(error));
@@ -116,11 +103,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#282C35",
     padding: 10,
   },
-  description: {
-    fontSize: 20,
-    color: "white",
-    padding: 10,
-  },
   label: {
     fontSize: 24,
     color: "white",
@@ -128,7 +110,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 24,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
     padding: 10,
     margin: 10,
   },

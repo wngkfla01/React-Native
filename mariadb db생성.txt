@@ -1,0 +1,21 @@
+mariadb 콘솔창 실행
+[데이터베이스 생성]
+create database db_name;
+
+[계정 생성]
+create user 'user_name'@'XXX.XXX.XXX.XXX' identified by 'input_password';
+
+[권한 추가]
+grant all privileges on db_name.* to 'user_name'@'XXX.XXX.XXX.XXX';
+flush privileges;
+
+
+
+
+
+<참고>
+[mariaDB user list]
+select host, user from mysql.user;
+
+[db삭제]
+drop database db_name;

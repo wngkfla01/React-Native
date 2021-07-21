@@ -3,11 +3,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TextInput,
-  AsyncStorage,
+  Button,
   TouchableOpacity,
 } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Auth(props) {
   const [username, setUsername] = useState("");
@@ -55,7 +55,6 @@ export default function Auth(props) {
     const token = await AsyncStorage.getItem("MR_Token");
     if (token) props.navigation.navigate("MovieList");
   };
-
   const toggleView = () => {
     setRegView(!regView);
   };
@@ -113,11 +112,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#282C35",
     padding: 10,
   },
-  description: {
-    fontSize: 20,
-    color: "white",
-    padding: 10,
-  },
   label: {
     fontSize: 24,
     color: "white",
@@ -125,7 +119,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 24,
-    backgroundColor: "white",
+    backgroundColor: "#fff",
     padding: 10,
     margin: 10,
   },
@@ -134,5 +128,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 30,
     paddingLeft: 10,
+    paddingRight: 10,
   },
 });
